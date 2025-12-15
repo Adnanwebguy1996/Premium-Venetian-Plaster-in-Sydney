@@ -121,7 +121,7 @@
       font-weight: 400;
     }
 
-    /* Header - Mobile Optimized */
+    /* Header */
     header {
       background-color: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
@@ -207,43 +207,399 @@
       z-index: 1001;
     }
 
-    /* Hero Section - Mobile Optimized */
+    /* ========== HERO SECTION ========== */
     .hero-wrap {
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                  url('https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&auto=format&fit=crop&w=1927&q=80');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      color: var(--white);
-      padding: 120px 0 80px;
       margin-top: 60px;
-      text-align: center;
+      background: var(--white);
+      padding: 2rem 0;
+      min-height: auto;
       position: relative;
     }
 
-    .hero h1, .hero p {
+    .hero-heading {
+      padding-top: 0.5rem;
+    }
+
+    /* Mobile Layout - Vertical Stack */
+    @media (max-width: 991px) {
+      .hero-wrap {
+        background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+                    url('https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&auto=format&fit=crop&w=1927&q=80');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: var(--white);
+        padding: 3rem 0;
+        min-height: auto;
+      }
+
+      .hero-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .hero-heading h1 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: var(--white);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subheadline {
+        font-size: clamp(1.1rem, 4vw, 1.4rem);
+        color: var(--white);
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        font-weight: 400;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        opacity: 0.95;
+      }
+
+      .hero-bullets {
+        margin-bottom: 1.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .hero-bullet {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 0.75rem;
+        justify-content: center;
+      }
+
+      .hero-bullet:last-child {
+        margin-bottom: 0;
+      }
+
+      .hero-bullet-icon {
+        color: var(--secondary);
+        margin-right: 0.75rem;
+        font-size: 1.2rem;
+        line-height: 1;
+        margin-top: 0.1rem;
+        flex-shrink: 0;
+      }
+
+      .hero-bullet-text {
+        font-size: 1.05rem;
+        line-height: 1.4;
+        color: var(--white);
+        font-weight: 500;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-form-container {
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        margin: 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .phone-cta {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .phone-cta-text {
+        color: var(--white);
+        font-weight: 500;
+      }
+
+      .phone-link {
+        color: var(--secondary);
+        font-weight: 600;
+      }
+
+      .phone-link:hover {
+        color: var(--white);
+      }
+
+      /* Hide the image container on mobile */
+      .hero-image-container {
+        display: none;
+      }
+    }
+
+    /* Desktop Two-Column Layout with Equal Height */
+    @media (min-width: 992px) {
+      .hero-wrap .container {
+        max-width: 1360px;
+      }
+
+      .hero-wrap {
+        background: var(--white);
+        min-height: calc(100vh - 60px);
+        display: flex;
+        align-items: center;
+        padding: 4rem 0;
+      }
+
+      .hero-container {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 1.5rem;
+        align-items: stretch; /* Equal height for children */
+        text-align: left;
+        height: 100%;
+        min-height: 600px;
+      }
+
+      .hero-content {
+        order: 1;
+        grid-column: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero-form-container {
+        order: 3;
+        grid-column: 1;
+        margin: 1rem 0 0 0;
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero-image-container {
+        display: block;
+        order: 2;
+        grid-column: 2;
+        grid-row: 1 / span 2; /* Span both rows to match form height */
+        margin: 0;
+        height: 100%;
+        display: flex;
+        align-items: stretch;
+      }
+
+      .hero-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+      }
+
+      /* Equal height adjustment */
+      .hero-form-container .hero-quote-form {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-heading h1 {
+        font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+        color: var(--dark);
+        text-shadow: none;
+      }
+
+      .hero-subheadline {
+        font-size: 1.25rem;
+        color: var(--text);
+        text-shadow: none;
+        opacity: 1;
+      }
+
+      .hero-bullets {
+        background: transparent;
+        backdrop-filter: none;
+        padding: 0;
+        border: none;
+        margin-bottom: 2rem;
+      }
+
+      .hero-bullet {
+        justify-content: flex-start;
+      }
+
+      .hero-bullet-icon {
+        color: var(--primary);
+      }
+
+      .hero-bullet-text {
+        color: var(--text);
+        text-shadow: none;
+        font-weight: 500;
+      }
+
+      .phone-cta {
+        background: var(--light);
+      }
+
+      .phone-cta-text {
+        color: var(--dark);
+      }
+
+      .phone-link {
+        color: var(--primary);
+      }
+
+      .phone-link:hover {
+        color: var(--primary-dark);
+      }
+    }
+
+    /* Tablet Adjustments */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .hero-wrap {
+        background: var(--white);
+        padding: 2rem 0;
+      }
+
+      .hero-heading h1 {
+        font-size: 2.2rem;
+        color: var(--dark);
+        text-shadow: none;
+      }
+      
+      .hero-subheadline {
+        font-size: 1.2rem;
+        color: var(--text);
+        text-shadow: none;
+        opacity: 1;
+      }
+      
+      .hero-image-container {
+        display: none;
+      }
+
+      .hero-bullets {
+        background: transparent;
+        backdrop-filter: none;
+        padding: 0;
+        border: none;
+      }
+
+      .hero-bullet-icon {
+        color: var(--primary);
+      }
+
+      .hero-bullet-text {
+        color: var(--text);
+        text-shadow: none;
+      }
+
+      .hero-form-container {
+        box-shadow: var(--shadow);
+      }
+    }
+
+    /* Common Hero Styles */
+    .hero-quote-form {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--dark);
+      font-size: 0.95rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #E0E0E0;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--white);
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+      flex: 1;
+    }
+
+    .cta-hero-quote {
+      width: 100%;
+      padding: 16px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background-color: var(--primary);
       color: var(--white);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 1rem;
     }
 
-    .hero p {
-      font-size: clamp(1.1rem, 3vw, 1.35rem);
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      line-height: 1.5;
-      font-weight: 400;
+    .cta-hero-quote:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139, 115, 85, 0.3);
     }
 
-    .center-btn {
+    .trust-line {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.4;
+      opacity: 0.8;
+    }
+
+    .phone-cta {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1rem;
-      width: 100%;
-      max-width: 400px;
-      margin: 0 auto;
+      gap: 0.5rem;
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      text-align: center;
+      margin-top: 1rem;
     }
 
-    /* Buttons - Mobile Optimized */
+    .phone-cta-text {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .phone-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+
+    .phone-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -283,7 +639,7 @@
       color: var(--dark);
     }
 
-    /* Sections - Mobile Optimized */
+    /* Sections */
     section {
       padding: 60px 0;
     }
@@ -296,7 +652,7 @@
       background-color: var(--gray-light);
     }
 
-    /* Cards Grid - Mobile Optimized */
+    /* Cards Grid */
     .cards-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -335,7 +691,7 @@
       transform: scaleX(1);
     }
 
-    /* Enhanced Services Grid - Mobile First */
+    /* Enhanced Services Grid */
     #services {
       background-color: var(--white);
     }
@@ -409,7 +765,7 @@
       font-size: 0.92rem;
     }
 
-    /* Service Areas Section - Mobile Optimized */
+    /* Service Areas Section */
     #service-areas {
       background-color: var(--gray-light);
     }
@@ -465,7 +821,7 @@
       transition: var(--transition);
     }
 
-    /* Areas We Serve Section - Mobile Optimized */
+    /* Areas We Serve Section */
     #areas-we-serve {
       background-color: var(--white);
     }
@@ -518,7 +874,7 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    /* Gallery - Mobile Optimized */
+    /* Gallery */
     .gallery-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -565,7 +921,7 @@
       transform: translateY(0);
     }
 
-    /* Enhanced Guide Section - Mobile Optimized */
+    /* Enhanced Guide Section */
     #guide {
       background-color: var(--gray-light);
     }
@@ -628,7 +984,7 @@
       transform: scale(1.02);
     }
 
-    /* Testimonials - Mobile Optimized */
+    /* Testimonials */
     .testimonials {
       background-color: var(--dark);
       color: var(--white);
@@ -687,7 +1043,7 @@
       font-size: 0.95rem;
     }
 
-    /* Form - Mobile Optimized */
+    /* Form */
     .quote-form {
       max-width: 100%;
       margin: 0 auto;
@@ -697,25 +1053,13 @@
       box-shadow: var(--shadow);
     }
 
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.25rem;
     }
 
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: var(--dark);
-      font-size: 0.95rem;
-    }
-
-    input, textarea, select {
+    select {
       width: 100%;
       padding: 12px 16px;
       border: 1px solid #E0E0E0;
@@ -726,15 +1070,10 @@
       background: var(--white);
     }
 
-    input:focus, textarea:focus, select:focus {
+    select:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.15);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 120px;
     }
 
     .submit {
@@ -744,7 +1083,7 @@
       font-weight: 600;
     }
 
-    /* Footer - Mobile Optimized */
+    /* Footer */
     footer {
       background-color: var(--dark);
       color: var(--white);
@@ -904,45 +1243,76 @@
 
     /* Mobile-specific fixes */
     @media (max-width: 767px) {
-      /* Fix mobile menu z-index issues */
       nav.active {
         z-index: 1000;
       }
       
-      /* Fix button width on mobile */
+      .logo {
+        padding-left: 0.5rem;
+      }
+      
+      .mobile-menu-btn {
+        transform: translateX(-4px);
+      }
+      
       .btn {
         max-width: 100%;
       }
       
-      /* Fix hero padding on mobile */
-      .hero-wrap {
-        padding: 100px 0 60px;
-      }
-      
-      /* Fix service features on mobile */
       .service-features {
         padding: 0.75rem;
       }
       
-      /* Fix suburb display on mobile */
       .area-suburbs {
         justify-content: center;
       }
       
-      /* Fix form spacing on mobile */
       .quote-form {
         padding: 1.25rem;
       }
       
-      /* Fix guide image on mobile */
       .guide-image {
         height: 250px;
       }
       
-      /* Fix gallery captions on mobile */
       .gallery-caption {
         transform: translateY(0);
         background: rgba(0, 0, 0, 0.7);
+      }
+      
+      .hero-wrap {
+        padding: 2rem 0;
+      }
+      
+      .hero-container {
+        gap: 1.25rem;
+      }
+      
+      .hero-heading h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero-subheadline {
+        font-size: 1.1rem;
+        margin-bottom: 1.25rem;
+      }
+      
+      .hero-bullets {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1.25rem;
+      }
+      
+      .hero-form-container {
+        padding: 1.25rem;
+      }
+
+      .hero-quote-form,
+      .quote-form,
+      .hero-quote-form label,
+      .quote-form label {
+        text-align: left;
       }
     }
 
@@ -989,22 +1359,6 @@
 
       nav a:hover::after {
         width: 100%;
-      }
-
-      .hero-wrap {
-        padding: 180px 0 120px;
-        margin-top: 70px;
-      }
-
-      .center-btn {
-        flex-direction: row;
-        justify-content: center;
-        max-width: none;
-      }
-
-      .btn {
-        width: auto;
-        max-width: none;
       }
 
       section {
@@ -1111,11 +1465,10 @@
         --container-padding: 3rem;
       }
       
-      .hero-wrap {
-        padding: 200px 0 120px;
-        margin-top: 80px;
+      .hero-container {
+        min-height: 650px;
       }
-
+      
       section {
         padding: 100px 0;
       }
@@ -1193,16 +1546,82 @@
   </header>
 
   <main id="main-content">
-    <!-- HERO -->
+    <!-- FIXED HERO SECTION -->
     <section class="hero-wrap">
-      <div class="container hero">
-        <h1 data-animate>Premium Venetian Plaster in Sydney</h1>
-        <p data-animate>
-          Expert polished plaster, Marmorino, Tadelakt & Travertino finishes crafted with luxury and precision. Transform your space with timeless elegance.
-        </p>
-        <div class="center-btn">
-          <a href="#contact" class="btn btn-primary" data-animate>Request a Free Quote</a>
-          <a href="#gallery" class="btn btn-secondary" data-animate>View Our Work</a>
+      <div class="container hero-container">
+        <!-- Left Column: Text Content -->
+        <div class="hero-content" data-animate>
+          <div class="hero-heading">
+            <h1>Venetian Plaster Feature Walls in Sydney – Free Design & Quote</h1>
+            <p class="hero-subheadline">Luxury Venetian plaster finishes for bedrooms, living rooms and feature walls across Sydney.</p>
+          </div>
+
+          <div class="hero-bullets">
+            <div class="hero-bullet">
+              <span class="hero-bullet-icon">✓</span>
+              <span class="hero-bullet-text">Local Sydney-based applicators</span>
+            </div>
+            <div class="hero-bullet">
+              <span class="hero-bullet-icon">✓</span>
+              <span class="hero-bullet-text">High-end, durable finishes</span>
+            </div>
+            <div class="hero-bullet">
+              <span class="hero-bullet-icon">✓</span>
+              <span class="hero-bullet-text">Quotes typically within 24 hours</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Image (Desktop Only) -->
+        <div class="hero-image-container" data-animate>
+          <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&auto=format&fit=crop&w=1927&q=80" 
+               alt="Venetian plaster feature wall in Sydney bedroom" 
+               loading="eager">
+        </div>
+
+        <!-- Form -->
+        <div class="hero-form-container" data-animate>
+          <form class="hero-quote-form" id="hero-quote-form" 
+                action="https://api.web3forms.com/submit" 
+                method="POST">
+            
+            <input type="hidden" name="access_key" value="db4e5fb3-2b75-4636-8fc9-4641c77e67cf">
+            <input type="hidden" name="subject" value="Hero Section Quote Request">
+            <input type="hidden" name="from_name" value="VenetianPlasterSydney Website Hero">
+            
+            <div class="form-group">
+              <label for="hero-name">Name *</label>
+              <input type="text" id="hero-name" name="name" placeholder="Your full name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="hero-phone">Phone *</label>
+              <input type="tel" id="hero-phone" name="phone" placeholder="Your phone number" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="hero-email">Email (optional)</label>
+              <input type="email" id="hero-email" name="email" placeholder="Your email address">
+            </div>
+            
+            <div class="form-group">
+              <label for="hero-suburb">Suburb *</label>
+              <input type="text" id="hero-suburb" name="suburb" placeholder="Your suburb in Sydney" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="hero-project">Tell us about your project *</label>
+              <textarea id="hero-project" name="message" placeholder="Describe your project (room type, size, preferred finish, etc.)" required></textarea>
+            </div>
+            
+            <button type="submit" class="cta-hero-quote">Request a Free Quote</button>
+            <p class="trust-line">No obligation. We'll contact you by phone or email within 1 business day.</p>
+          </form>
+
+          <div class="phone-cta">
+            <span class="phone-cta-text">Prefer to talk?</span>
+            <a href="tel:0434995895" class="phone-link">Call us on 0434 995 895</a>
+          </div>
         </div>
       </div>
     </section>
@@ -1689,8 +2108,86 @@
       }
     });
 
-    // Form Handling
-    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    // Hero Form Handling
+    document.getElementById('hero-quote-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form elements
+      const name = document.getElementById('hero-name');
+      const phone = document.getElementById('hero-phone');
+      const suburb = document.getElementById('hero-suburb');
+      const project = document.getElementById('hero-project');
+      const submitBtn = this.querySelector('.cta-hero-quote');
+      const form = this;
+      
+      // Validate form
+      let isValid = true;
+      
+      if (!name.value.trim()) {
+        alert('Please enter your name');
+        name.focus();
+        isValid = false;
+      }
+      
+      if (!phone.value.trim()) {
+        alert('Please enter your phone number');
+        phone.focus();
+        isValid = false;
+      }
+      
+      if (!suburb.value.trim()) {
+        alert('Please enter your suburb');
+        suburb.focus();
+        isValid = false;
+      }
+      
+      if (!project.value.trim()) {
+        alert('Please tell us about your project');
+        project.focus();
+        isValid = false;
+      }
+      
+      if (!isValid) return;
+      
+      // Show loading state
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      
+      // Submit to Web3Forms
+      const formData = new FormData(form);
+      
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Show success message
+          alert('Thank you! We\'ll contact you within 1 business day.');
+          
+          // Reset form
+          form.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(error => {
+        alert('There was an error submitting your form. Please try again or contact us directly.');
+        console.error('Form submission error:', error);
+      })
+      .finally(() => {
+        // Reset button state
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+
+    // Existing Form Handling (for contact section)
+    document.getElementById('quoteForm')?.addEventListener('submit', function(e) {
       e.preventDefault();
       
       // Get form elements
